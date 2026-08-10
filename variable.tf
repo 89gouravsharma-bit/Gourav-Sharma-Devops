@@ -1,6 +1,0 @@
-variable "aaa" {
-  
-}
-variable "bbb" {
-  
-}
