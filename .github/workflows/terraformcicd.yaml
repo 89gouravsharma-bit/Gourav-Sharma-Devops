@@ -1,0 +1,139 @@
+name: Terraform_CI_CD ### workflow ka name hai
+
+on: ######trigger point pipeline kab run hogi
+  push: ####jab main branch me code push karenge 
+    branches:
+      - main
+
+
+defaults:
+  run:
+    working-directory: "Terraform Learning/Implicit Dependency"
+
+      
+
+
+jobs: ###########ye wahi sare tasks  ka combinations hai 
+
+  terraform_validation:  #####1st job
+    name: Terraform Validation
+    runs-on: ubuntu-latest  ####runner pipeline kaha run hogi
+
+    steps:
+      - name: Checkout the code ###########code ko runner pe le ke aana hai
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_SECRET }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Format Check
+        run: terraform fmt
+
+      - name: Terraform Validate
+        run: terraform validate
+
+  terraform_security_scan:  #####2nd job
+    name: Terraform Security Scan
+    needs: terraform_validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_SECRET }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Setup TFLint
+        uses: terraform-linters/setup-tflint@v4
+
+      - name: Initialize TFLint
+        run: tflint --init
+
+      - name: Run TFLint
+        run: tflint
+
+      - name: Install Checkov
+        run: pip3 install checkov
+
+      - name: Run Checkov
+        run: checkov -d . --soft-fail
+
+  terraform_plan_preview:
+    name: Terraform Plan
+    needs: terraform_security_scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_SECRET }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan
+        run: terraform plan -out "dev.tfplan"
+      - name: Generate Human Readable Plan
+        run: terraform show dev.tfplan > plan.txt
+
+      - name: Upload Terraform Plan
+        uses: actions/upload-artifact@v4
+        with:
+          name: terraform-plan
+          path: "Terraform Learning/Implicit Dependency"
+            dev.tfplan
+            plan.txt
+
+  terraform_apply:
+    name: Terraform Apply
+    needs: terraform_plan_preview
+    runs-on: ubuntu-latest
+    environment: dev
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Azure Login
+        uses: azure/login@v2
+        with:
+          creds: ${{ secrets.AZURE_SECRET }}
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Download Terraform Plan
+        uses: actions/download-artifact@v4
+        with:
+          name: terraform-plan
+          path: "Terraform Learning/Implicit Dependency"
+
+      - name: Terraform apply
+        run: terraform apply dev.tfplan
