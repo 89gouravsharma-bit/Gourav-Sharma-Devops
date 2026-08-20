@@ -1,4 +1,4 @@
-name: Terraform_CI_CD ### workflow ka name hai
+name: Terraform_CI_CD ### workflow ka name ha
 
 on: ######trigger point pipeline kab run hogi
   push: ####jab main branch me code push karenge 
