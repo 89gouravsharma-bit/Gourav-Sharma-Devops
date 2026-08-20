@@ -104,9 +104,9 @@ jobs: ###########ye wahi sare tasks  ka combinations hai
         uses: actions/upload-artifact@v4
         with:
           name: terraform-plan
-          path: "Terraform Learning/Implicit Dependency"
-            dev.tfplan
-            plan.txt
+          path: |
+            Terraform Learning/Implicit Dependency/dev.tfplan
+            Terraform Learning/Implicit Dependency/plan.txt
 
   terraform_apply:
     name: Terraform Apply
@@ -133,7 +133,9 @@ jobs: ###########ye wahi sare tasks  ka combinations hai
         uses: actions/download-artifact@v4
         with:
           name: terraform-plan
-          path: "Terraform Learning/Implicit Dependency"
+          path: |
+            Terraform Learning/Implicit Dependency/dev.tfplan
+            Terraform Learning/Implicit Dependency/plan.txt
 
       - name: Terraform apply
         run: terraform apply dev.tfplan
