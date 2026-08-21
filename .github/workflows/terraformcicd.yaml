@@ -1,26 +1,23 @@
-name: Terraform_CI_CD ### workflow ka name ha
+name: Terraform_CI_CD
 
-on: ######trigger point pipeline kab run hogi
-  push: ####jab main branch me code push karenge 
+on:
+  push:
     branches:
       - main
-
+      - 'feature/**'
 
 defaults:
   run:
     working-directory: "Terraform Learning/Implicit Dependency"
 
-      
+jobs:
 
-
-jobs: ###########ye wahi sare tasks  ka combinations hai 
-
-  terraform_validation:  #####1st job
+  terraform_validation:
     name: Terraform Validation
-    runs-on: ubuntu-latest  ####runner pipeline kaha run hogi
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the code ###########code ko runner pe le ke aana hai
+      - name: Checkout the code
         uses: actions/checkout@v4
 
       - name: Setup Terraform
@@ -35,12 +32,13 @@ jobs: ###########ye wahi sare tasks  ka combinations hai
         run: terraform init
 
       - name: Terraform Format Check
-        run: terraform fmt
+        run: terraform fmt -check
 
       - name: Terraform Validate
         run: terraform validate
 
-  terraform_security_scan:  #####2nd job
+
+  terraform_security_scan:
     name: Terraform Security Scan
     needs: terraform_validation
     runs-on: ubuntu-latest
@@ -75,6 +73,7 @@ jobs: ###########ye wahi sare tasks  ka combinations hai
       - name: Run Checkov
         run: checkov -d . --soft-fail
 
+
   terraform_plan_preview:
     name: Terraform Plan
     needs: terraform_security_scan
@@ -96,7 +95,8 @@ jobs: ###########ye wahi sare tasks  ka combinations hai
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan -out "dev.tfplan"
+        run: terraform plan -out="dev.tfplan"
+
       - name: Generate Human Readable Plan
         run: terraform show dev.tfplan > plan.txt
 
@@ -108,9 +108,11 @@ jobs: ###########ye wahi sare tasks  ka combinations hai
             Terraform Learning/Implicit Dependency/dev.tfplan
             Terraform Learning/Implicit Dependency/plan.txt
 
+
   terraform_apply:
     name: Terraform Apply
     needs: terraform_plan_preview
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment: dev
 
@@ -133,9 +135,7 @@ jobs: ###########ye wahi sare tasks  ka combinations hai
         uses: actions/download-artifact@v4
         with:
           name: terraform-plan
-          path: |
-            Terraform Learning/Implicit Dependency/dev.tfplan
-            Terraform Learning/Implicit Dependency/plan.txt
+          path: Terraform Learning/Implicit Dependency
 
-      - name: Terraform apply
+      - name: Terraform Apply
         run: terraform apply dev.tfplan
