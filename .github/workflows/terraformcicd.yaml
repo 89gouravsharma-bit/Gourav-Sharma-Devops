@@ -8,7 +8,7 @@ on:
 
 defaults:
   run:
-    working-directory: "Terraform Learning/Implicit Dependency"
+    working-directory: "Terraform Learning/pre prod"
 
 jobs:
 
@@ -95,7 +95,7 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan
-        run: terraform plan -out="dev.tfplan"
+        run: terraform plan -out="dev.tfplan"  -var-file="terraform.tfvars"
 
       - name: Generate Human Readable Plan
         run: terraform show dev.tfplan > plan.txt
@@ -105,8 +105,8 @@ jobs:
         with:
           name: terraform-plan
           path: |
-            Terraform Learning/Implicit Dependency/dev.tfplan
-            Terraform Learning/Implicit Dependency/plan.txt
+            Terraform Learning/pre prod/dev.tfplan
+            Terraform Learning/pre prod/plan.txt
 
 
   terraform_apply:
@@ -135,7 +135,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: terraform-plan
-          path: Terraform Learning/Implicit Dependency
+          path: Terraform Learning/pre prod
 
       - name: Terraform Apply
         run: terraform apply dev.tfplan
