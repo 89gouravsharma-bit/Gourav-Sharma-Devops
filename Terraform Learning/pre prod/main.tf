@@ -1,5 +1,5 @@
 module "resource_group" {
-    source = "../environmnent/resource group"
+    source = "../environment/resource group"
     aaa = var.aaa
   
 }
@@ -9,13 +9,13 @@ depends_on = [ module.resource_group ]
 bbb = var.bbb
 }
 module "vnet" {
-    source = "../environmnent/vnet"
+    source = "../environment/vnet"
     depends_on = [ module.resource_group ]
     ccc = var.ccc
   
 }
 module "subnets" {
-    source = "../environmnent/subnet"
+    source = "../environment/subnet"
     depends_on = [ module.resource_group,module.vnet ]
     ddd = var.ddd
   
