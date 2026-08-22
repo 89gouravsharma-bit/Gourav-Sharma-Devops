@@ -6,7 +6,7 @@ module "resource_group" {
 module "storage_account" {
 source = "../environment/storage account"  
 depends_on = [ module.resource_group ]
-bbb = var.aaa
+bbb = var.bbb
 }
 module "vnet" {
     source = "../environmnent/vnet"
