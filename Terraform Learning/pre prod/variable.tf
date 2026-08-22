@@ -1,12 +1,12 @@
-variable "aaa"{}
+variable "aaa" {}
 
 variable "bbb" {
-  
+
 }
 variable "ccc" {
-  
+
 }
 
 variable "ddd" {
-  
+
 }

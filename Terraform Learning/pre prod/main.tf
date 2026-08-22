@@ -1,22 +1,22 @@
 module "resource_group" {
-    source = "../environment/resource group"
-    aaa = var.aaa
-  
+  source = "../environment/resource group"
+  aaa    = var.aaa
+
 }
 module "storage_account" {
-source = "../environment/storage account"  
-depends_on = [ module.resource_group ]
-bbb = var.bbb
+  source     = "../environment/storage account"
+  depends_on = [module.resource_group]
+  bbb        = var.bbb
 }
 module "vnet" {
-    source = "../environment/vnet"
-    depends_on = [ module.resource_group ]
-    ccc = var.ccc
-  
+  source     = "../environment/vnet"
+  depends_on = [module.resource_group]
+  ccc        = var.ccc
+
 }
 module "subnets" {
-    source = "../environment/subnet"
-    depends_on = [ module.resource_group,module.vnet ]
-    ddd = var.ddd
-  
+  source     = "../environment/subnet"
+  depends_on = [module.resource_group, module.vnet]
+  ddd        = var.ddd
+
 }
