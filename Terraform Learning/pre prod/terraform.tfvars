@@ -7,7 +7,7 @@ aaa = {
 
 bbb = {
   bac = {
-    stg_name                 = "stgsatka123"
+    stg_name                 = "stgsatka127"
     resource_group_name      = "rg_gourav"
     stg_location             = "westus"
     account_tier             = "Standard"
@@ -16,7 +16,7 @@ bbb = {
 
   }
   bab = {
-    stg_name                 = "stgsatka129"
+    stg_name                 = "stgsatka128"
     resource_group_name      = "rg_gourav"
     stg_location             = "westus"
     account_tier             = "Standard"
