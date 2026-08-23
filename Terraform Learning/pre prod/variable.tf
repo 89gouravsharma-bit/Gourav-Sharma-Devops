@@ -11,7 +11,7 @@ variable "bbb" {
     resource_group_name      = string
     stg_location             = string
     account_tier             = string
-    accoubt_replication_type = string
+    account_replication_type = string
   }))
 
 }
@@ -29,7 +29,7 @@ variable "ddd" {
   type = map(object({
     subnet_name           = string
     resource_group_name   = string
-    virttual_network_name = string
+    virtual_network_name = string
     address_prefixes      = list(string)
   }))
 
