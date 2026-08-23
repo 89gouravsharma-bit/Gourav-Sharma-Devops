@@ -37,7 +37,7 @@ ccc = {
     vnet_name           = "vnet2"
     vnet_location       = "westus"
     resource_group_name = "rg_gourav"
-    ddress_space        = ["10.1.0.0/16"]
+    address_space = [ "value" ]
 
   }
   abc = {
