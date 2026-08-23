@@ -37,7 +37,7 @@ ccc = {
     vnet_name           = "vnet2"
     vnet_location       = "westus"
     resource_group_name = "rg_gourav"
-    address_space       = ["10.0.0.0/16"]
+    address_space       = ["10.1.0.0/16"]
 
   }
   abc = {
@@ -64,7 +64,7 @@ ddd = {
   adb = {
     subnet_name          = "AzureBastionSubnet"
     resource_group_name  = "rg_gourav"
-    virtual_network_name = "vnet2"
+    virtual_network_name = "vnet3"
     address_prefixes     = ["10.2.0.0/28"]
   }
 }
