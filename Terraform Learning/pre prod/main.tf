@@ -33,3 +33,9 @@ module "nsg" {
   fff        = var.fff
 
 }
+module "nic" {
+  source     = "../environment/nic"
+  depends_on = [module.subnets, module.public_ip]
+  ggg        = var.ggg
+
+}

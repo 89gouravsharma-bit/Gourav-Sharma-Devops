@@ -95,3 +95,16 @@ fff = {
   }
 
 }
+
+ggg = {
+  runner_nic = {
+    subnet_name          = "frontend_subnet"
+    virtual_network_name = "vnet1"
+    public_ip_name       = "pip_github_runer"
+    resource_group_name  = "rg_gourav"
+    nic_name             = "nic_github_runner"
+    location             = "westus"
+    nsg_name             = "nsg_github_runner"
+
+  }
+}
