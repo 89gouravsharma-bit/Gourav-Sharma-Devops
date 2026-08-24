@@ -7,7 +7,11 @@ aaa = {
 
 bbb = {
   bac = {
+<<<<<<< Updated upstream
     stg_name                 = "stgsatka123"
+=======
+    stg_name                 = "stgsatka121"
+>>>>>>> Stashed changes
     resource_group_name      = "rg_gourav"
     stg_location             = "westus"
     account_tier             = "Standard"
@@ -16,7 +20,11 @@ bbb = {
 
   }
   bab = {
+<<<<<<< Updated upstream
     stg_name                 = "stgsatka129"
+=======
+    stg_name                 = "stgsatka122"
+>>>>>>> Stashed changes
     resource_group_name      = "rg_gourav"
     stg_location             = "westus"
     account_tier             = "Standard"
@@ -67,3 +75,31 @@ ddd = {
     address_prefixes     = ["10.1.0.0/28"]
   }
 }
+eee = {
+runner_pip ={
+  public_ip_name = "pip_github_runer"
+  resource_group_name = "rg_gourav"
+  location = "westus"
+  allocation_method = "Static"
+  sku = "Standard"
+}
+}
+fff = {
+  rnner_nsg = {
+
+     nsg_name = "nsg_github_runner"
+      nsg_location = "westus"
+      resource_group_name = "rg_gourav"
+      rule_name = "Allow-SSH"
+      priority = 100
+      direction = "Inbound"
+      access = "Allow"
+      protocol = "Tcp"
+      source_port_range = "*"
+      destination_port_range = "22"
+      source_address_prefix = "*"
+      destination_address_prefix = "*"
+
+  }
+    
+  }

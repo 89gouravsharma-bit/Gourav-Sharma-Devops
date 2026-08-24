@@ -20,3 +20,16 @@ module "subnets" {
   ddd        = var.ddd
 
 }
+module "public_ip" {
+  source = "../environment/public ip"
+  depends_on = [ module.resource_group ]
+  eee = var.eee
+  
+}
+
+module "nsg" {
+  source = "../environment/NSG"
+  depends_on = [ module.resource_group ]
+  fff = var.fff
+  
+}
