@@ -7,11 +7,7 @@ aaa = {
 
 bbb = {
   bac = {
-<<<<<<< Updated upstream
-    stg_name                 = "stgsatka123"
-=======
-    stg_name                 = "stgsatka121"
->>>>>>> Stashed changes
+    stg_name                 = "stgsatka122"
     resource_group_name      = "rg_gourav"
     stg_location             = "westus"
     account_tier             = "Standard"
@@ -20,11 +16,7 @@ bbb = {
 
   }
   bab = {
-<<<<<<< Updated upstream
-    stg_name                 = "stgsatka129"
-=======
-    stg_name                 = "stgsatka122"
->>>>>>> Stashed changes
+    stg_name                 = "stgsatka123"
     resource_group_name      = "rg_gourav"
     stg_location             = "westus"
     account_tier             = "Standard"
