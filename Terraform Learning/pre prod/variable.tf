@@ -37,29 +37,29 @@ variable "ddd" {
 
 variable "eee" {
   type = map(object({
-    public_ip_name = String
-    location = String
-    resource_group_name = String
-    allocation_method = String
-    sku = String
+    public_ip_name      = string
+    location            = string
+    resource_group_name = string
+    allocation_method   = string
+    sku                 = string
   }))
 }
 
 variable "fff" {
-    type = map(object({
-      nsg_name = String
-      nsg_location = String
-      resource_group_name = String
-      rule_name =String
-      priority = number
-      direction =String
-      access = String
-      protocol = String
-      source_port_range = String
-      destination_port_range = String
-      source_address_prefix = String
-      destination_address_prefix = String
+  type = map(object({
+    nsg_name                   = string
+    nsg_location               = string
+    resource_group_name        = string
+    rule_name                  = string
+    priority                   = number
+    direction                  = string
+    access                     = string
+    protocol                   = string
+    source_port_range          = string
+    destination_port_range     = string
+    source_address_prefix      = string
+    destination_address_prefix = string
 
-    }))
-  
+  }))
+
 }

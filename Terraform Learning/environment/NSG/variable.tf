@@ -1,17 +1,17 @@
 variable "fff" {
     type = map(object({
-      nsg_name = String
-      nsg_location = String
-      resource_group_name = String
-      rule_name =String
+      nsg_name = string
+      nsg_location = string
+      resource_group_name = string
+      rule_name =string
       priority = number
-      direction =String
-      access = String
-      protocol = String
-      source_port_range = String
-      destination_port_range = String
-      source_address_prefix = String
-      destination_address_prefix = String
+      direction =string
+      access = string
+      protocol = string
+      source_port_range = string
+      destination_port_range = string
+      source_address_prefix = string
+      destination_address_prefix = string
 
     }))
   
