@@ -16,7 +16,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
     network_interface_ids = [data.azurerm_network_interface.nic[each.key].id]
 
     admin_ssh_key {
-        username = each.value.admin_usrername
+        username = each.value.admin_username
         
        public_key = each.value.ssh_public_key
     }
