@@ -8,5 +8,6 @@ variable "hhh" {
 
     size        = string
     admin_username = string
+    ssh_public_key      = string
   }))
 }

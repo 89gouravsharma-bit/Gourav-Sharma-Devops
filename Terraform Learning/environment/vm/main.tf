@@ -18,7 +18,7 @@ resource "azurerm_linux_virtual_machine" "vm" {
     admin_ssh_key {
         username = each.value.admin_usrername
         
-       public_key = file("~/.ssh/id_rsa.pub")
+       public_key = each.value.ssh_public_key
     }
     os_disk {
         caching ="ReadWrite"
