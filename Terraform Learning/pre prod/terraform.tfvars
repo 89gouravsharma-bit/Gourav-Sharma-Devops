@@ -108,3 +108,16 @@ ggg = {
 
   }
 }
+hhh = {
+  github_runner_vm = {
+    vm_name             = "vm_github_runner"
+    location            = "westus"
+    resource_group_name = "rg_gourav"
+
+    nic_name = "nic_github_runner"
+
+    vm_size        = "StandardB1s"
+    admin_username = "azueruser"
+
+  }
+}

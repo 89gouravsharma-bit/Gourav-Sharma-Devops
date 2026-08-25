@@ -39,3 +39,9 @@ module "nic" {
   ggg        = var.ggg
 
 }
+module "vm" {
+  source     = "../environment/vm"
+  depends_on = [module.nic]
+  hhh        = var.hhh
+
+}
