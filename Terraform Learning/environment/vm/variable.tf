@@ -6,7 +6,7 @@ variable "hhh" {
 
     nic_name = string
 
-    size        = string
+    vm_size        = string
     admin_username = string
     ssh_public_key      = string
   }))
