@@ -6,7 +6,7 @@ variable "hhh" {
 
     nic_name = string
 
-    vm_size        = string
+    size        = string
     admin_username = string
   }))
 }

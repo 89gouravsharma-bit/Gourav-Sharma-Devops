@@ -4,13 +4,13 @@ data "azurerm_network_interface" "nic" {
   name                = each.value.nic_name
   resource_group_name = each.value.resource_group_name
 }
-resource "azurerm_virtual_linux_machine" "vm" {
+resource "azurerm_linux_virtual_machine" "vm" {
     for_each = var.hhh
     name = each.value.vm_name
     location = each.value.location
     resource_group_name = each.value.resource_group_name
 
-    vm_size  = each.value.vm_size
+    size  = each.value.vm_size
     admin_username = each.value.admin_username
 
     network_interface_ids = [data.azurerm_network_interface.nic[each.key].id]

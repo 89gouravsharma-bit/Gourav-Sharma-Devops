@@ -116,7 +116,7 @@ hhh = {
 
     nic_name = "nic_github_runner"
 
-    vm_size        = "StandardB1s"
+    size           = "StandardB1s"
     admin_username = "azueruser"
 
   }
